@@ -71,7 +71,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
    
         let index: Int = comboBox.indexOfSelectedItem
         
-        var str_axe = "x"
+        itemAxeValue.stringValue = "Demagnetizing factor on axe \(indexToAxe(index: index)):"
+    }
+    
+    func applicationWillTerminate(_ aNotification: Notification) {
+        
+    }
+
+    func indexToAxe(index: Int) -> String {
+        
+        var str_axe: String = "x"
             
         if index == 1 {
 
@@ -83,13 +92,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
             str_axe = "z"
         }
         
-        itemAxeValue.stringValue = "Demagnetizing factor on axe \(str_axe):"
+        return str_axe
     }
     
-    func applicationWillTerminate(_ aNotification: Notification) {
-        
-    }
-
     @IBAction func calculateEnergy(sender: Any) {
     
         let a_value: Float = aValue.floatValue
@@ -102,7 +107,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
         var b: Float = 1*b_value
         var c: Float = 1*c_value
         var js: Float = 1*js_value
-        var str_axe = "x"
         
         if demag_axe == 1 {
             
@@ -110,7 +114,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
             b = 1*a_value
             c = 1*b_value
             js = 1*js_value
-            str_axe = "y"
         }
     
         if demag_axe == 2 {
@@ -119,7 +122,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
             b = 1*c_value
             c = 1*a_value
             js = 1*js_value
-            str_axe = "z"
         }
     
         let a2: Float = a*a
@@ -141,7 +143,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
         let energydensity: Float = 2*3.1415927*Ms*Ms*demagnitized_factor/10
         let energy2: Float = 2*a*2*b*2*c*energydensity*1e-6/(1.38*3)
 
-        itemAxeValue.stringValue = "Demagnetizing factor on axe \(str_axe):"
+        itemAxeValue.stringValue = "Demagnetizing factor on axe \(indexToAxe(index: demag_axe)):"
         demagValue.floatValue = demagnitized_factor.isNaN ? 0.0 : demagnitized_factor
         energyDensityValue.floatValue = energydensity.isNaN ? 0.0 : energydensity/1000
         energyValue.floatValue = energy2.isNaN ? 0.0 : energy2
