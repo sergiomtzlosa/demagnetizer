@@ -28,11 +28,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
     
     @IBOutlet weak var itemAxeValue: NSTextField!
 
-    internal class func sharedDelegate() -> AppDelegate {
-        
-        return NSApplication.shared.delegate as! AppDelegate
-    }
-    
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
           
         return true;
@@ -185,11 +180,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
         let dict : Dictionary = (Bundle.main.infoDictionary as Dictionary?)!
            
         return (dict["CFBundleExecutable"] as? String)!
-    }
-    
-    class func currentWindow() -> NSWindow
-    {
-        return AppDelegate.sharedDelegate().window;
     }
 }
 
