@@ -28,14 +28,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
     
     @IBOutlet weak var itemAxeValue: NSTextField!
 
-    internal class func sharedDelegate() -> AppDelegate
-    {
+    internal class func sharedDelegate() -> AppDelegate {
+        
         return NSApplication.shared.delegate as! AppDelegate
     }
     
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
           
-          return true;
+        return true;
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -97,11 +97,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
     
     func replaceCommaString(value: String) -> Float {
         
-        let result: String = value.replacingOccurrences(of: ",", with: ".").replacingOccurrences(of: " ", with: "");
-        
         var fValue: Float = 0.0
         
-        if result != "" {
+        if value != "" {
+            
+            let result: String = value.replacingOccurrences(of: ",", with: ".").replacingOccurrences(of: " ", with: "");
+            
             fValue = Float(result)!
         }
         
