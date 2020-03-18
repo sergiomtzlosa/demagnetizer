@@ -38,6 +38,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
           return true;
     }
     
+    func applicationWillTerminate(_ aNotification: Notification) {
+        
+    }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         self.window.standardWindowButton(NSWindow.ButtonType.zoomButton)!.isEnabled = false   
@@ -72,10 +76,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
         let index: Int = comboBox.indexOfSelectedItem
         
         itemAxeValue.stringValue = "Demagnetizing factor on axe \(indexToAxe(index: index)):"
-    }
-    
-    func applicationWillTerminate(_ aNotification: Notification) {
-        
     }
 
     func indexToAxe(index: Int) -> String {
