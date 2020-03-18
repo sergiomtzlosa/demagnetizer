@@ -95,14 +95,27 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
         return str_axe
     }
     
+    func replaceCommaString(value: String) -> Float {
+        
+        let result: String = value.replacingOccurrences(of: ",", with: ".").replacingOccurrences(of: " ", with: "");
+        
+        var fValue: Float = 0.0
+        
+        if result != "" {
+            fValue = Float(result)!
+        }
+        
+        return fValue
+    }
+    
     @IBAction func calculateEnergy(sender: Any) {
     
-        let a_value: Float = aValue.floatValue
-        let b_value: Float = bValue.floatValue
-        let c_value: Float = cValue.floatValue
-        let js_value: Float = jsValue.floatValue
+        let a_value: Float = replaceCommaString(value: aValue?.stringValue ?? "")
+        let b_value: Float = replaceCommaString(value: bValue?.stringValue ?? "")
+        let c_value: Float = replaceCommaString(value: cValue?.stringValue ?? "")
+        let js_value: Float = replaceCommaString(value: jsValue?.stringValue ?? "")
         let demag_axe: Int = axeValue.indexOfSelectedItem;
-        
+
         var a: Float = 1*a_value
         var b: Float = 1*b_value
         var c: Float = 1*c_value
