@@ -161,9 +161,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
         let energy2: Float = 2*a*2*b*2*c*energydensity*1e-6/(1.38*3)
 
         itemAxeValue.stringValue = "Demagnetizing factor on axe \(indexToAxe(index: demag_axe)):"
-        demagValue.stringValue = demagnitized_factor.isNaN ? "0.0" : String(format:"%.20f", demagnitized_factor)
-        energyDensityValue.stringValue = energydensity.isNaN ? "0.0" : String(format:"%.20f", energydensity/1000.0)
-        energyValue.stringValue = energy2.isNaN ? "0.0" : String(format:"%.1f", energy2)
+        demagValue.floatValue = demagnitized_factor.isNaN ? 0.0 : demagnitized_factor
+        energyDensityValue.floatValue = energydensity.isNaN ? 0.0 : energydensity/1000.0
+        energyValue.floatValue = energy2.isNaN ? 0.0 : energy2
+        
+        demagValue.stringValue = demagValue.stringValue.replacingOccurrences(of: ".", with: "")
+        demagValue.stringValue = demagValue.stringValue.replacingOccurrences(of: ",", with: ".")
+        
+        energyDensityValue.stringValue = energyDensityValue.stringValue.replacingOccurrences(of: ".", with: "")
+        energyDensityValue.stringValue = energyDensityValue.stringValue.replacingOccurrences(of: ",", with: ".")
+        
+        energyValue.stringValue = energyValue.stringValue.replacingOccurrences(of: ".", with: "")
+        energyValue.stringValue = energyValue.stringValue.replacingOccurrences(of: ",", with: ".")
         
 //        print("")
 //        print("          Demagnetizing factor calculation for a prism figure")
