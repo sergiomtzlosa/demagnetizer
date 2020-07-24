@@ -37,8 +37,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
         
     }
     
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
+    func applicationWillFinishLaunching(_ notification: Notification) {
         
+        UserDefaults.standard.set(true, forKey: "NSDisabledCharacterPaletteMenuItem")
+        UserDefaults.standard.set(true, forKey: "NSDisabledDictationMenuItem")
+    }
+    
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
+
         self.window.standardWindowButton(NSWindow.ButtonType.zoomButton)!.isEnabled = false   
         self.window.setFrame(self.windowRect(), display: true)
         self.window.center()
@@ -154,7 +160,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
 
         itemAxeValue.stringValue = "Demagnetizing factor on axe \(indexToAxe(index: demag_axe)):"
         demagValue.floatValue = demagnitized_factor.isNaN ? 0.0 : demagnitized_factor
-        energyDensityValue.floatValue = energydensity.isNaN ? 0.0 : energydensity/1000
+        energyDensityValue.floatValue = energydensity.isNaN ? 0.0 : energydensity/1000.0
         energyValue.floatValue = energy2.isNaN ? 0.0 : energy2
         
 //        print("")
