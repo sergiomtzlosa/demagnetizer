@@ -11,6 +11,8 @@ import Cocoa
 let SCREEN_WIDTH : CGFloat = 750.0
 let SCREEN_HEIGHT : CGFloat = 370.0
 
+let PI_NUMBER: Float = 3.1415927
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
 
@@ -100,7 +102,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
         
         var fValue: Float = 0.0
         
-        if value != "" {
+        if value.isNumeric {
             
             let result: String = value.replacingOccurrences(of: ",", with: ".").replacingOccurrences(of: " ", with: "");
             
@@ -152,16 +154,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
         let rac: Float = sqrt(a2+c2)
         let pi_axe: Float = ((b2-c2)/(2*bc))*log10((r-a)/(r+a))+((a2-c2)/(2*ac))*log10((r-b)/(r+b))+(b/(2*c))*log10((rab+a)/(rab-a))+(a/(2*c))*log10((rab+b)/(rab-b))+(c/(2*a))*log10((rbc-b)/(rbc+b))+(c/(2*b))*log10((rac-a)/(rac+a))+2*atan2(ab,c*r)+(a2*a+b2*b-2*c2*c)/(3*abc)+((a2+b2-2*c2)/(3*abc))*r+(c/ab)*(rac+rbc)-(rab*rab*rab+rbc*rbc*rbc+rac*rac*rac)/(3*abc)
     
-        let demagnitized_factor: Float = pi_axe/3.1415927
+        let demagnitized_factor: Float = pi_axe/PI_NUMBER
     
         let Ms: Float = js/(4*3.1415927*1e-4)
         let energydensity: Float = 2*3.1415927*Ms*Ms*demagnitized_factor/10
         let energy2: Float = 2*a*2*b*2*c*energydensity*1e-6/(1.38*3)
 
         itemAxeValue.stringValue = "Demagnetizing factor on axe \(indexToAxe(index: demag_axe)):"
-        demagValue.floatValue = demagnitized_factor.isNaN ? 0.0 : demagnitized_factor
-        energyDensityValue.floatValue = energydensity.isNaN ? 0.0 : energydensity/1000.0
-        energyValue.floatValue = energy2.isNaN ? 0.0 : energy2
+        demagValue.stringValue = demagnitized_factor.isNaN ? "0.0" : String(format:"%.20f", demagnitized_factor)
+        energyDensityValue.stringValue = energydensity.isNaN ? "0.0" : String(format:"%.20f", energydensity/1000.0)
+        energyValue.stringValue = energy2.isNaN ? "0.0" : String(format:"%.1f", energy2)
         
 //        print("")
 //        print("          Demagnetizing factor calculation for a prism figure")
