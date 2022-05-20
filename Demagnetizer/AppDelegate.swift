@@ -120,10 +120,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
         let js_value: Float = replaceCommaString(value: jsValue?.stringValue ?? "")
         let demag_axe: Int = axeValue.indexOfSelectedItem;
 
-        var a: Float = 1*a_value
-        var b: Float = 1*b_value
-        var c: Float = 1*c_value
+        var a: Float = 1*b_value
+        var b: Float = 1*c_value
+        var c: Float = 1*a_value
         var js: Float = 1*js_value
+        
+        print("damg axe: \(demag_axe)")
         
         if demag_axe == 1 {
             
@@ -135,9 +137,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
     
         if demag_axe == 2 {
             
-            a = 1*b_value
-            b = 1*c_value
-            c = 1*a_value
+            a = 1*a_value
+            b = 1*b_value
+            c = 1*c_value
             js = 1*js_value
         }
     
@@ -152,7 +154,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSComboBoxDelegate {
         let rab: Float = sqrt(a2+b2)
         let rbc: Float = sqrt(b2+c2)
         let rac: Float = sqrt(a2+c2)
-        let pi_axe: Float = ((b2-c2)/(2*bc))*log10((r-a)/(r+a))+((a2-c2)/(2*ac))*log10((r-b)/(r+b))+(b/(2*c))*log10((rab+a)/(rab-a))+(a/(2*c))*log10((rab+b)/(rab-b))+(c/(2*a))*log10((rbc-b)/(rbc+b))+(c/(2*b))*log10((rac-a)/(rac+a))+2*atan2(ab,c*r)+(a2*a+b2*b-2*c2*c)/(3*abc)+((a2+b2-2*c2)/(3*abc))*r+(c/ab)*(rac+rbc)-(rab*rab*rab+rbc*rbc*rbc+rac*rac*rac)/(3*abc)
+        let pi_axe: Float = ((b2-c2)/(2*bc))*log((r-a)/(r+a))+((a2-c2)/(2*ac))*log((r-b)/(r+b))+(b/(2*c))*log((rab+a)/(rab-a))+(a/(2*c))*log((rab+b)/(rab-b))+(c/(2*a))*log((rbc-b)/(rbc+b))+(c/(2*b))*log((rac-a)/(rac+a))+2*atan(ab/(c*r))+(a2*a+b2*b-2*c2*c)/(3*abc)+((a2+b2-2*c2)/(3*abc))*r+(c/ab)*(rac+rbc)-(rab*rab*rab+rbc*rbc*rbc+rac*rac*rac)/(3*abc)
     
         let demagnitized_factor: Float = pi_axe/PI_NUMBER
     
